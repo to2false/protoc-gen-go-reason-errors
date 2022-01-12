@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package errors;
+package reasonerrors;
 
-option go_package = "github.com/to2false/reason-errors/errors";
+option go_package = "github.com/to2false/reason-errors/reasonerrors";
 
 import "google/protobuf/descriptor.proto";
 

@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/to2false/protoc-gen-go-reason-errors/errors"
+	"github.com/to2false/protoc-gen-go-reason-errors/reasonerrors"
 	"google.golang.org/protobuf/compiler/protogen"
 	"google.golang.org/protobuf/proto"
 )
 
 const (
-	errorsPackage = protogen.GoImportPath("github.com/to2false/reason-errors/errors")
+	errorsPackage = protogen.GoImportPath("github.com/to2false/reason-errors/reasonerrors")
 	fmtPackage    = protogen.GoImportPath("fmt")
 )
 
@@ -54,7 +54,7 @@ func generateFileContent(gen *protogen.Plugin, file *protogen.File, g *protogen.
 }
 
 func genErrorsReason(gen *protogen.Plugin, file *protogen.File, g *protogen.GeneratedFile, enum *protogen.Enum) bool {
-	defaultCode := proto.GetExtension(enum.Desc.Options(), errors.E_DefaultCode)
+	defaultCode := proto.GetExtension(enum.Desc.Options(), reasonerrors.E_DefaultCode)
 	code := 0
 	if ok := defaultCode.(int32); ok != 0 {
 		code = int(ok)
@@ -65,7 +65,7 @@ func genErrorsReason(gen *protogen.Plugin, file *protogen.File, g *protogen.Gene
 	var ew errorWrapper
 	for _, v := range enum.Values {
 		enumCode := code
-		eCode := proto.GetExtension(v.Desc.Options(), errors.E_Code)
+		eCode := proto.GetExtension(v.Desc.Options(), reasonerrors.E_Code)
 		if ok := eCode.(int32); ok != 0 {
 			enumCode = int(ok)
 		}
@@ -79,7 +79,7 @@ func genErrorsReason(gen *protogen.Plugin, file *protogen.File, g *protogen.Gene
 		}
 
 		var enumMessage string
-		eMessage := proto.GetExtension(v.Desc.Options(), errors.E_Message)
+		eMessage := proto.GetExtension(v.Desc.Options(), reasonerrors.E_Message)
 		if v, ok := eMessage.(string); ok {
 			enumMessage = v
 		}
