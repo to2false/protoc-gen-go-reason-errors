@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package errors;
 
-option go_package = "github.com/to2false/reason-errors;errors";
+option go_package = "github.com/to2false/reason-errors/errors";
 
 import "google/protobuf/descriptor.proto";
 
