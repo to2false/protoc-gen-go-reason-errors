@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package errors;
+
+option go_package = "github.com/to2false/reason-errors;errors";
+
+import "google/protobuf/descriptor.proto";
+
+message Error {
+  int32 code = 1;
+  int32 reason_no = 2;
+  string reason = 3;
+  string message = 4;
+  map<string, string> metadata = 5;
+};
+
+extend google.protobuf.EnumOptions {
+  int32 default_code = 1108;
+}
+
+extend google.protobuf.EnumValueOptions {
+  int32 code = 1109;
+}
+
+extend google.protobuf.EnumValueOptions {
+  string message = 1110;
+}
