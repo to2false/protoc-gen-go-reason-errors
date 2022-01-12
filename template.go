@@ -12,16 +12,16 @@ func Is{{.CamelValue}}(err error) bool {
 	if err == nil {
 		return false
 	}
-	e := errors.FromError(err)
+	e := reasonerrors.FromError(err)
 	return e.Reason == {{.Name}}_{{.Value}}.String() && e.Code == {{.HTTPCode}}
 }
 
-func Error{{.CamelValue}}() *errors.Error {
-	return errors.New({{.HTTPCode}}, int({{.Name}}_{{.Value}}), {{.Name}}_{{.Value}}.String(), "{{.Message}}")
+func Error{{.CamelValue}}() *reasonerrors.Error {
+	return reasonerrors.New({{.HTTPCode}}, int({{.Name}}_{{.Value}}), {{.Name}}_{{.Value}}.String(), "{{.Message}}")
 }
 
-func Error{{.CamelValue}}f(format string, args ...interface{}) *errors.Error {
-	 return errors.New({{.HTTPCode}}, int({{.Name}}_{{.Value}}), {{.Name}}_{{.Value}}.String(), fmt.Sprintf(format, args...))
+func Error{{.CamelValue}}f(format string, args ...interface{}) *reasonerrors.Error {
+	 return reasonerrors.New({{.HTTPCode}}, int({{.Name}}_{{.Value}}), {{.Name}}_{{.Value}}.String(), fmt.Sprintf(format, args...))
 }
 
 {{- end }}

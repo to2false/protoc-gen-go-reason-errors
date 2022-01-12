@@ -15,13 +15,13 @@ message Error {
 };
 
 extend google.protobuf.EnumOptions {
-  int32 default_code = 1108;
+  int32 default_code = 101108;
 }
 
 extend google.protobuf.EnumValueOptions {
-  int32 code = 1109;
+  int32 code = 101109;
 }
 
 extend google.protobuf.EnumValueOptions {
-  string message = 1110;
+  string message = 101110;
 }
